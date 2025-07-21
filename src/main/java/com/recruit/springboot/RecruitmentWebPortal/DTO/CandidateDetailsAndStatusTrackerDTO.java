@@ -6,7 +6,6 @@ import com.recruit.springboot.RecruitmentWebPortal.entity.CurrentLocation;
 import com.recruit.springboot.RecruitmentWebPortal.entity.Recruiter;
 import com.recruit.springboot.RecruitmentWebPortal.entity.Source;
 import com.recruit.springboot.RecruitmentWebPortal.entity.Status;
-import com.recruit.springboot.RecruitmentWebPortal.entity.Vendor;
 
 
 public class CandidateDetailsAndStatusTrackerDTO {
@@ -23,7 +22,7 @@ public class CandidateDetailsAndStatusTrackerDTO {
     private String noticePeriod;
     private CurrentLocation currentLocation;
     private String preferredLocation;
-    private Vendor vendor;
+    private String vendor;
     private Recruiter recruiter;
     private Source source;
     private Status status;
@@ -107,10 +106,10 @@ public class CandidateDetailsAndStatusTrackerDTO {
     public void setPreferredLocation(String preferredLocation) {
         this.preferredLocation = preferredLocation;
     }
-    public Vendor getVendor() {
+    public String getVendor() {
         return vendor;
     }
-    public void setVendor(Vendor vendor) {
+    public void setVendor(String vendor) {
         this.vendor = vendor;
     }
     public Recruiter getRecruiter() {

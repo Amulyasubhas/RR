@@ -25,8 +25,8 @@ public class CandidateDetailsAndStatusTracker {
 
     private String preferredLocation;
 
-    @Enumerated(EnumType.STRING)
-    private Vendor vendor;
+    private String vendor;
+
 
     @Enumerated(EnumType.STRING)
     private Recruiter recruiter;
@@ -146,11 +146,11 @@ public class CandidateDetailsAndStatusTracker {
         this.preferredLocation = preferredLocation;
     }
 
-    public Vendor getVendor() {
+    public String getVendor() {
         return vendor;
     }
 
-    public void setVendor(Vendor vendor) {
+    public void setVendor(String vendor) {
         this.vendor = vendor;
     }
 

@@ -29,8 +29,16 @@ public class CandidateDetailsAndStatusTrackerServiceImpl implements CandidateDet
     }
 
     @Override
+    public CandidateDetailsAndStatusTrackerDTO getById(Long id) {
+        CandidateDetailsAndStatusTracker entity = repo.findById(id)
+            .orElseThrow(() -> new RuntimeException("Candidate not found with ID: " + id));
+        return mapToDTO(entity);
+    }
+
+    @Override
     public CandidateDetailsAndStatusTrackerDTO update(Long id, CandidateDetailsAndStatusTrackerDTO dto, String userEmail) {
-        CandidateDetailsAndStatusTracker existing = repo.findById(id).orElseThrow();
+        CandidateDetailsAndStatusTracker existing = repo.findById(id)
+            .orElseThrow(() -> new RuntimeException("Candidate not found with ID: " + id));
         if (!existing.getCreatedBy().equals(userEmail)) {
             throw new SecurityException("You are not allowed to update this record.");
         }
@@ -38,6 +46,16 @@ public class CandidateDetailsAndStatusTrackerServiceImpl implements CandidateDet
         updated.setId(id);
         updated.setCreatedBy(userEmail);
         return mapToDTO(repo.save(updated));
+    }
+
+    @Override
+    public void delete(Long id, String userEmail) {
+        CandidateDetailsAndStatusTracker existing = repo.findById(id)
+            .orElseThrow(() -> new RuntimeException("Candidate not found with ID: " + id));
+        if (!existing.getCreatedBy().equals(userEmail)) {
+            throw new SecurityException("You are not allowed to delete this record.");
+        }
+        repo.deleteById(id);
     }
 
     private CandidateDetailsAndStatusTracker mapToEntity(CandidateDetailsAndStatusTrackerDTO dto) {
